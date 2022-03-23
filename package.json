@@ -1,0 +1,29 @@
+{
+  "name": "memory_storage_params",
+  "version": "1.0.0",
+  "description": "toy problem showing differences between using memory and storage params",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShipyardDAO/memory_storage_params.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShipyardDAO/memory_storage_params/issues"
+  },
+  "homepage": "https://github.com/ShipyardDAO/memory_storage_params#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.6.1",
+    "hardhat": "^2.9.1",
+    "hardhat-gas-reporter": "^1.0.8"
+  }
+}

@@ -42,17 +42,26 @@ contract str {
 /*
 Explanation:
 
-0 uses the least gas, because x is already in storage. Using memory would required copying x from storage to memory unnecessarily. Meanwhile, implicitly coercing from calldata to storage isn't allowed.
+- 0 uses the least gas, because x is already in storage. 
+- Using memory would required copying x from storage to memory unnecessarily. 
+- Meanwhile, implicitly coercing from calldata to storage isn't allowed.
 
-Surprisingly, useMemPure() uses 16 more gas than useMem()! I haven't yet walked through the opcodes to trace that one, but I'd like to get back to that. 
+Sneakily, useMemPure() uses 16 more gas than useMem()! Why? It's a trick, it's because we're using `else if` instead of 3 `if`s!
 .
 Learning objective:
 
-calldata/memory/storage is often one of the things beginners--and even intermediate students--gloss over without really grasping in a meaningful way. When explained, memory/calldata is often pretty straightforward to understand, but I feel like it's rare to hear an explanation of why storage might ever be explicitly declared; why would picking storage over memory or calldata ever be cheaper? It sounds like a paradox when you first learn these options. This problem creates a scenario where calldata is the most wrong choice, and calldata is more expensive than storage! (bonus: pure is more expensive than view!)
+calldata/memory/storage is often one of the things beginners--and even intermediate students--gloss over without really grasping 
+in a meaningful way. When explained, memory/calldata is often pretty straightforward to understand, but I feel like it's rare to 
+hear an explanation of why storage might ever be explicitly declared; why would picking storage over memory or calldata ever be 
+cheaper? It sounds like a paradox when you first learn these options. This problem creates a scenario where calldata is the most 
+wrong choice, and memory is more expensive than storage!
 
 - calldata is super cheap when you just need immutable data. Think of it like referencing the raw untouched arguments.
 - memory, while still cheap, is a bit more expensive. It's for when you plan to mutate your data.
 - so, when should we use storage? When the argument already exists in storage, and we want to avoid copying it over to memory!
 
-I also think this is ripe interview question material. I don't know if it gets used, but it's a nice little detail to sus out solid grasp of fundamentals, imo
+I also think this is ripe interview question material. I don't know if it gets used, but it's a nice little detail to sus out 
+solid grasp of fundamentals, imo
+
+Note: internal functions can use calldata, but they must have calldata passed in.
 */
